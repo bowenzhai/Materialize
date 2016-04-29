@@ -1,5 +1,6 @@
 package com.bowenzhai.materialize;
 
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -45,12 +46,16 @@ public class Questions extends AppCompatActivity {
             if (answer.equals(correctAnswer)) {
                 TextView t = (TextView) findViewById(R.id.correctornot);
                 t.setText("CORRECT!");
+                MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.right);
+                mp.start();
                 ImageView i = (ImageView) findViewById(R.id.tickcross);
                 i.setImageDrawable(getDrawable(R.drawable.tick));
                 answerSubmitted();
             } else {
                 TextView t = (TextView) findViewById(R.id.correctornot);
                 t.setText("CORRECT ANSWER: " + correctAnswer);
+                MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.wrong);
+                mp.start();
                 ImageView i = (ImageView) findViewById(R.id.tickcross);
                 i.setImageDrawable(getDrawable(R.drawable.cross));
                 answerSubmitted();
