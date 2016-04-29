@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="#59ACB7"
+    android:background="#198392"
     android:orientation="vertical"
     tools:context="com.bowenzhai.materialize.Questions">
 
@@ -15,9 +15,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-thin"
-        android:textColor="#025460"
+        android:textColor="@color/abc_primary_text_material_light"
         android:textSize="30dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="80dp"
         android:text="@string/Q1"/>
 
     <EditText
@@ -42,7 +42,8 @@
             android:text="Okay"
             android:layout_margin="2dp"
             android:padding="2dp"
-            android:onClick="onAnswerClick"/>
+            android:onClick="onAnswerClick"
+            style="@style/Widget.AppCompat.Button.Colored"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -50,8 +51,39 @@
             android:padding="2dp"
             android:layout_margin="2dp"
             android:text="Hint"
-            android:onClick="onHintClick"/>
+            android:onClick="onHintClick"
+            style="@style/Widget.AppCompat.Button.Colored"/>
 
     </LinearLayout>
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:id="@+id/tickcross"
+        android:src="@drawable/tick" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-thin"
+        android:textColor="@color/abc_primary_text_material_light"
+        android:text="CORRECT!"
+        android:textSize="30dp"
+        android:id="@+id/correctornot"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:layout_marginTop="30dp"
+        android:padding="2dp"
+        android:layout_gravity="center"
+        android:id="@+id/nextbutton"
+        style="@style/Widget.AppCompat.Button.Colored"/>
 
 </LinearLayout>
