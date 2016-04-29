@@ -18,14 +18,14 @@
         android:textColor="@color/abc_primary_text_material_light"
         android:textSize="30dp"
         android:layout_marginTop="80dp"
-        android:text="@string/Q1"/>
+        android:id="@+id/question"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#B1E8F0"
         android:inputType="text"
-        android:textSize="20dip"
+        android:textSize="20dp"
         android:layout_margin="10dp"
         android:hint="Answer"
         android:id="@+id/answer"/>
@@ -84,6 +84,7 @@
         android:padding="2dp"
         android:layout_gravity="center"
         android:id="@+id/nextbutton"
+        android:onClick="onNextClick"
         style="@style/Widget.AppCompat.Button.Colored"/>
 
 </LinearLayout>

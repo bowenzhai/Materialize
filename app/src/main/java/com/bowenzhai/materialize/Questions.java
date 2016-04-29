@@ -12,39 +12,50 @@ import android.widget.Toast;
 
 public class Questions extends AppCompatActivity {
 
+    private boolean done;
+    private int questionNo = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questions);
+        String[] questions = getResources().getStringArray(R.array.Questions);
+        TextView t = (TextView) findViewById(R.id.question);
+        t.setText(questions[questionNo]);
         findViewById(R.id.tickcross).setVisibility(View.INVISIBLE);
         findViewById(R.id.correctornot).setVisibility(View.INVISIBLE);
         findViewById(R.id.nextbutton).setVisibility(View.INVISIBLE);
     }
 
     public void onHintClick(View view) {
-        Toast toasty = Toast.makeText(getApplicationContext(), getString(R.string.H1), Toast.LENGTH_SHORT);
+        String[] hints = getResources().getStringArray(R.array.Hints);
+        Toast toasty = Toast.makeText(getApplicationContext(), hints[questionNo], Toast.LENGTH_SHORT);
         toasty.show();
     }
 
     public void onAnswerClick(View view) {
-        String answer = ((EditText)findViewById(R.id.answer)).getText().toString();
-        answer = answer.toLowerCase();
-        String correctAnswer = getString(R.string.A1);
-        correctAnswer = correctAnswer.toUpperCase();
-        answer = answer.toUpperCase();
+        if (!done) {
+            String answer = ((EditText) findViewById(R.id.answer)).getText().toString();
+            String[] answers = getResources().getStringArray(R.array.Answers);
+            answer = answer.toLowerCase();
+            String correctAnswer = answers[questionNo];
+            correctAnswer = correctAnswer.toUpperCase();
+            answer = answer.toUpperCase();
 
-        if (answer.equals(correctAnswer)) {
-            TextView t = (TextView) findViewById(R.id.correctornot);
-            t.setText("CORRECT!");
-            ImageView i = (ImageView) findViewById(R.id.tickcross);
-            i.setImageDrawable(getDrawable(R.drawable.tick));
-            answerSubmitted();
-        } else {
-            TextView t = (TextView) findViewById(R.id.correctornot);
-            t.setText("CORRECT ANSWER: " + correctAnswer);
-            ImageView i = (ImageView) findViewById(R.id.tickcross);
-            i.setImageDrawable(getDrawable(R.drawable.cross));
-            answerSubmitted();
+            if (answer.equals(correctAnswer)) {
+                TextView t = (TextView) findViewById(R.id.correctornot);
+                t.setText("CORRECT!");
+                ImageView i = (ImageView) findViewById(R.id.tickcross);
+                i.setImageDrawable(getDrawable(R.drawable.tick));
+                answerSubmitted();
+            } else {
+                TextView t = (TextView) findViewById(R.id.correctornot);
+                t.setText("CORRECT ANSWER: " + correctAnswer);
+                ImageView i = (ImageView) findViewById(R.id.tickcross);
+                i.setImageDrawable(getDrawable(R.drawable.cross));
+                answerSubmitted();
+            }
+            done = true;
         }
     }
 
@@ -66,6 +77,22 @@ public class Questions extends AppCompatActivity {
             public void onAnimationRepeat(Animation animation) {}
         });
         findViewById(R.id.tickcross).startAnimation(animation);
+    }
 
+    public void onNextClick(View view){
+        if (done) {
+            String[] questions = getResources().getStringArray(R.array.Questions);
+            if (questionNo < (questions.length - 1)) {
+                ++questionNo;
+                findViewById(R.id.tickcross).setVisibility(View.INVISIBLE);
+                findViewById(R.id.correctornot).setVisibility(View.INVISIBLE);
+                findViewById(R.id.nextbutton).setVisibility(View.INVISIBLE);
+                EditText et = (EditText) findViewById(R.id.answer);
+                et.setText("");
+                TextView t = (TextView) findViewById(R.id.question);
+                t.setText(questions[questionNo]);
+                done = false;
+            }
+        }
     }
 }
