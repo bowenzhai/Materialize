@@ -1,6 +1,7 @@
 package com.bowenzhai.materialize;
 
 import android.media.MediaPlayer;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -30,8 +31,22 @@ public class Questions extends AppCompatActivity {
 
     public void onHintClick(View view) {
         String[] hints = getResources().getStringArray(R.array.Hints);
+        Snackbar snackbar = Snackbar.make(view, hints[questionNo], Snackbar.LENGTH_INDEFINITE);
+        snackbar.setAction("OKAY", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //dismisses it
+            }
+        });
+        snackbar.setActionTextColor(getResources().getColor(R.color.colorAccent));
+
+        snackbar.show();
+
+        // Toasts are so last gen
+        /*
         Toast toasty = Toast.makeText(getApplicationContext(), hints[questionNo], Toast.LENGTH_SHORT);
         toasty.show();
+        */
     }
 
     public void onAnswerClick(View view) {
