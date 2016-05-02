@@ -10,7 +10,7 @@
     android:gravity="center"
     android:background="#198392"
     android:orientation="vertical"
-    tools:context="com.bowenzhai.materialize.MainActivity">
+    tools:context=".Splash">
 
     <ImageView
         android:layout_width="60dp"
