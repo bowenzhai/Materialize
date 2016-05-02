@@ -1,2 +1,2 @@
 # Materialize
-Android app that does something
+Android app that quizes user
